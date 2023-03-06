@@ -1,16 +1,12 @@
 import { getAllArticles, IArticle } from 'resources/article-provider'
-import { Articles } from './articles'
-import { render, screen, waitFor } from '@testing-library/react'
+import { ArticleList } from 'articles/article-list'
+import { render, screen } from '@testing-library/react'
 
 jest.mock('resources/article-provider')
 
 const getAllArticlesMock = jest.mocked(getAllArticles)
 
-export function flushPromises(): Promise<void> {
-  return new Promise(process.nextTick)
-}
-
-describe('<Articles />', () => {
+describe('<ArticleList />', () => {
 
   test('render', async () => {
 
@@ -21,15 +17,13 @@ describe('<Articles />', () => {
       } as unknown as IArticle
     ])
 
-    const view = render(<Articles/>)
+    const view = render(<ArticleList/>)
     expect(screen.getByText('Latest topics')).toBeInTheDocument()
     expect(screen.getByText('Loading...')).toBeInTheDocument()
     expect(view.container.innerHTML).toMatchSnapshot('loading')
 
     expect(getAllArticles).toBeCalled()
-    await waitFor(() => {
-      expect(screen.getByText('Foo bar')).toBeInTheDocument()
-    })
+    expect(await screen.findByText('Foo bar')).toBeInTheDocument()
     expect(view.container.innerHTML).toMatchSnapshot('articles loaded')
 
   })

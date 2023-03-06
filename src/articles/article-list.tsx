@@ -2,7 +2,7 @@ import { getAllArticles, IArticle } from 'resources/article-provider'
 import 'articles/article-list.scss'
 import React, { useEffect, useState } from 'react'
 
-export function Articles(): JSX.Element {
+export function ArticleList(): JSX.Element {
 
   const [articles, setArticles] = useState<IArticle[]>([])
 

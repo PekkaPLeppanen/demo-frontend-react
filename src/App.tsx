@@ -1,11 +1,11 @@
 import React from 'react'
-import { Articles } from 'articles/articles'
+import { ArticleList } from 'articles/article-list'
 
 function App() {
   return (
     <>
       <main>
-        <Articles />
+        <ArticleList />
       </main>
     </>
   )
