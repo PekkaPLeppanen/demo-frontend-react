@@ -1,11 +1,14 @@
 import React from 'react'
-import { Articles } from 'articles/articles'
+import { ArticleList } from 'articles/article-list'
+import { ArticleProvider } from './articles/article-context'
 
 function App() {
   return (
     <>
       <main>
-        <Articles />
+        <ArticleProvider>
+          <ArticleList/>
+        </ArticleProvider>
       </main>
     </>
   )
